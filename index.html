@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PZI projekt</title>
+		<link rel="stylesheet" type="text/css" href="./style.css" />
+		<link rel="stylesheet" type="text/css" href="./dateStyle.css" />
+	</head>
+	<body>
+		<header>
+			<div id="links-container">
+				<a href="index.html">Home</a>
+				
+			</div>
+            <h1 id="header-title">Događaji</h1>
+            <div id="links-container">
+				
+				<a href="./about.html">About</a>
+			</div>
+		</header>
+
+		<main>
+			<h1>Administratorski pregled stranice - upravljanje događajima</h1>
+			<button id="add-event">Dodaj događaj</button>
+			<p id="search-guide">Pretražite događaje po lokaciji: </p>
+			<div id="location-container">
+				<select id="location-select">
+					<option value="">Izaberi lokaciju (Trenutno sve lokacije)</option>
+				</select>
+				<button class="found-events-on-location" >Traži</button>
+			</div>
+			<div id="cards-container"> </div>
+			
+			
+			<!-- <div class="datepicker-container">
+				<input type="text" class="date-input" placeholder="Izaberi datum" />
+		  
+				<div class="datepicker">
+				  <div class="datepicker-toolbar">
+					<button class="prev">Prošli</button>
+		  
+					<div>
+					  <select class="month-input">
+						<option>Siječanj</option>
+						<option>Veljača</option>
+						<option>Ožujak</option>
+						<option>Travanj</option>
+						<option>Svibanj</option>
+						<option>Lipanj</option>
+						<option>Srpanj</option>
+						<option>Kolovoz</option>
+						<option>Rujan</option>
+						<option>Listopad</option>
+						<option>Studeni</option>
+						<option>Prosinac</option>
+					  </select>
+					  <input type="number" class="year-input" />
+					</div>
+		  
+					<button class="next">Idući</button>
+				  </div>
+				
+				  <div class="days">
+					<span>PON</span>
+					<span>UTO</span>
+					<span>SRI</span>
+					<span>ČET</span>
+					<span>PET</span>
+					<span>SUB</span>
+					<span>NED</span>
+				  </div>
+	
+				  <div class="dates"></div>
+				  <div class="datepicker-end-button">
+					<button class="cancel">Odustani</button>
+					<button class="apply">Primjeni</button>
+				  </div>
+				</div>
+			  </div> -->
+			  
+
+
+		</main>
+		<footer>
+            <img id="fesb-logo" src="images/fesb-logo.png" />
+        </footer>
+		<script type="module" src="./script.js"></script>
+		<script type="module" src="./datepicker.js"></script>
+	</body>
+</html>
