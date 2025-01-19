@@ -1,4 +1,4 @@
-import calendarFunctions from 'datepicker.js';
+// import calendarFunctions from 'datepicker.js';
 
 //Funkcija za dodavanje događaja
 const addNewCardButton = document.getElementById('add-event');
@@ -71,52 +71,6 @@ function displaySavedEvents(nameOfTheCity) {
 			</div>
 			<p id="location">Lokacija: ${event.location || "Lokacija nije odabrana"}</p>
 			
-
-			 <div class="datepicker-container">
-				<input type="text" class="date-input" placeholder="Izaberi datum" />
-		  
-				<div class="datepicker">
-				  <div class="datepicker-toolbar">
-					<button class="prev">Prošli</button>
-		  
-					<div>
-					  <select class="month-input">
-						<option>Siječanj</option>
-						<option>Veljača</option>
-						<option>Ožujak</option>
-						<option>Travanj</option>
-						<option>Svibanj</option>
-						<option>Lipanj</option>
-						<option>Srpanj</option>
-						<option>Kolovoz</option>
-						<option>Rujan</option>
-						<option>Listopad</option>
-						<option>Studeni</option>
-						<option>Prosinac</option>
-					  </select>
-					  <input type="number" class="year-input" />
-					</div>
-		  
-					<button class="next">Idući</button>
-				  </div>
-				
-				  <div class="days">
-					<span>PON</span>
-					<span>UTO</span>
-					<span>SRI</span>
-					<span>ČET</span>
-					<span>PET</span>
-					<span>SUB</span>
-					<span>NED</span>
-				  </div>
-	
-				  <div class="dates"></div>
-				  <div class="datepicker-end-button">
-					<button class="cancel">Odustani</button>
-					<button class="apply">Primjeni</button>
-				  </div>
-				</div>
-			  </div>
 
 
 

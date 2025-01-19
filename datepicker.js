@@ -1,4 +1,4 @@
-export function calendarFunctions(){
+
 
 const datepicker = document.querySelector(".datepicker");
 const dates = datepicker.querySelector(".dates");
@@ -129,4 +129,3 @@ const createButton = (text, isDisabled = false, type = 0) => {
 
 displayDates();
 
-}
