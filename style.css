@@ -155,14 +155,14 @@ h2 {
 	justify-content: space-between;
 }
 
-#location-container
+#location-container, #location-input
 {
 	display: flex;
 	justify-content: center;
 	margin: 5px auto;
 
 }
-.found-events-on-location, .confirm-location{
+.found-events-on-location, .confirm-location-input{
 	color: white;
 	background-color:  rgb(13, 49, 120);
 	padding: 5px 10px;
@@ -171,18 +171,18 @@ h2 {
 	margin-left: 5px;
 }
 
-.found-events-on-location:hover, .confirm-location:hover {
+.found-events-on-location:hover, .confirm-location-input:hover {
 	background-color:rgb(2, 59, 174);
 	transition: 0.5s;
 	transform: scale(1.1);
 
 }
-
-.location-select-js{
+/* 
+.location-select, .location-select-input{
 	margin-top: 15px;
 	margin-bottom: 5px;
 	background-color: rgba(13, 49, 120, 0.381);
-}
+} */
 
 @media screen and (max-width: 1000px) {
 	main {
@@ -204,7 +204,7 @@ h2 {
 		width: 95%;
 	}
 
-	#location-select, .location-select-js{
+	#location-select, .location-select-input{
 		width: 70%;
 	}
 
@@ -216,3 +216,5 @@ h2 {
     height: auto; 
 	}
 }
+
+

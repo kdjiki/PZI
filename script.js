@@ -1,4 +1,3 @@
-// import calendarFunctions from 'datepicker.js';
 
 //Funkcija za dodavanje događaja
 const addNewCardButton = document.getElementById('add-event');
@@ -6,35 +5,41 @@ const addNewCardButton = document.getElementById('add-event');
 addNewCardButton.addEventListener('click', handleAddCardButtonClick);
 
 function handleAddCardButtonClick() {
-	const headerOfArticle = prompt('Unesi naziv događaja:', 'Događaj');
+	const headerOfArticle = document.querySelector('[name="name-of-event"]').value;
 	if (!headerOfArticle) return;
 
-	const imageLocation = prompt('Unesi putanju do slike: ', 'images/fesb-logo.png');
+	const imageLocation = document.querySelector('[name="URL-of-picture"]').value;
 	if (!imageLocation) return;
 
-	const description = prompt('Unesi opis događaja: ', 'tradicionalni');
+	const description = document.querySelector('[name="description-of-event"]').value;
 	if (!description) return;
+	const location= document.getElementById('location-select').value;
+	if (!location) return;
 
-	const startDate = prompt("Unesi datum početka:", "19.1.2025.");
-	const endDate = prompt("Unesi datum završetka:", "19.1.2025.");
-  
+	const startDate =document.querySelector('.date-input-start').value;
+	// const endDate = document.querySelector('.date-input-end').value;
 	const newEvent = {
 	  header: headerOfArticle,
 	  image: imageLocation,
 	  description: description,
-	  location: "",
+	  location: location,
 	  startDate: startDate,
-	  endDate: endDate,
+	  endDate: "",
 	};
 
 	const happenings = JSON.parse(localStorage.getItem("events")) || [];
 	
 	// happenings su parsirani eventi (glupo ime zbog razlike)
 	happenings.push(newEvent);
-	
-	// azuriranje i prikaz dogadaja koji su trenutno spremljenu
 	localStorage.setItem("events", JSON.stringify(happenings));
 	displaySavedEvents();
+
+
+	document.querySelector('[name="name-of-event"]').value = "";
+	document.querySelector('[name="URL-of-picture"]').value = "";
+	document.querySelector('[name="description-of-event"]').value = "";
+	document.getElementById('location-select').value = "";
+	document.querySelector('.date-input-start').value = "";
 }
 
 function displaySavedEvents(nameOfTheCity) {
@@ -42,13 +47,11 @@ function displaySavedEvents(nameOfTheCity) {
 	cardContainer.innerHTML = "";
 
 	var events = JSON.parse(localStorage.getItem("events")) || [];
-	if(nameOfTheCity!=undefined & nameOfTheCity!=""){
-		events = events.filter(event => event.location === nameOfTheCity);
-	}else{
-		events = JSON.parse(localStorage.getItem("events")) || [];
-	}
+	const filteredEvents = nameOfTheCity
+		? events.filter(event => event.location === nameOfTheCity)
+		: events;
 	
-	events.forEach((event, index) => {
+	filteredEvents.forEach((event) => {
 	  const article = document.createElement("article");
 	  article.classList.add("card");
   
@@ -61,18 +64,7 @@ function displaySavedEvents(nameOfTheCity) {
 		  <div class="card-text-container">
 			<p id="description">Opis događaja: ${event.description}</p>
 			
-			<div id="location-container-${index}">
-				<label for="location-select-${index}">Odaberi lokaciju događaja:</label>
-				<br>
-				<select class="location-select-js" id="location-select-${index}">
-					<option value="">Izaberi lokaciju</option>
-				</select>
-				<button class="confirm-location" data-index="${index}">Potvrdi</button>
-			</div>
-			<p id="location">Lokacija: ${event.location || "Lokacija nije odabrana"}</p>
-			
-
-
+			<p id="location">Lokacija: ${event.location}</p>
 
 			<p id="start-date">Datum početka: ${event.startDate}</p>
 			<p id="end-date">Datum završetka: ${event.endDate}</p>
@@ -94,32 +86,33 @@ function displaySavedEvents(nameOfTheCity) {
 		});
 
 
-	  //FETCHANJE
-	  fetch("https://raw.githubusercontent.com/samayo/country-json/refs/heads/master/src/country-by-capital-city.json")
-	  .then(response => response.json())
-	  .then(data => {
-		  const select = document.getElementById(`location-select-${index}`);
-		  data.forEach((entry) => {
-			  const option = document.createElement("option");
-			  option.value = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
-			  option.textContent = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
-			  select.appendChild(option);
-		  });
-	  })
-	  .catch(error => console.log("Unable to fetch cities", error));
+	//   //FETCHANJE
+	//   fetch("https://raw.githubusercontent.com/samayo/country-json/refs/heads/master/src/country-by-capital-city.json")
+	//   .then(response => response.json())
+	//   .then(data => {
+	// 	  const select = document.getElementById(`location-select-${index}`);
+	// 	  data.forEach((entry) => {
+	// 		  const option = document.createElement("option");
+	// 		  option.value = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
+	// 		  option.textContent = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
+	// 		  select.appendChild(option);
+	// 	  });
+	//   })
+	//   .catch(error => console.log("Unable to fetch cities", error));
   
 
-	article.querySelector(".confirm-location").addEventListener("click", () => {
-		const select = document.getElementById(`location-select-${index}`);
-		const selectedLocation = select.value;
+	// article.querySelector(".confirm-location").addEventListener("click", () => {
+	// 	const select = document.getElementById(`location-select-${index}`);
+	// 	const selectedLocation = select.value;
 
-		const events = JSON.parse(localStorage.getItem("events")) || [];
-		events[index].location = selectedLocation;
-		localStorage.setItem("events", JSON.stringify(events));
-		displaySavedEvents();
-	});
 
-	  cardContainer.appendChild(article);
+		
+	// });
+	//const events = JSON.parse(localStorage.getItem("events")) || [];
+	// 	events[index].location = selectedLocation;
+	//localStorage.setItem("events", JSON.stringify(events));
+//displaySavedEvents();
+	cardContainer.appendChild(article);
 	});
 }
   
@@ -144,20 +137,20 @@ function displaySavedEvents(nameOfTheCity) {
 		  select.appendChild(option);
 	  });
   })
-  .catch(error => console.log("Unable to fetch cities", error));
+  .catch(error => console.log(error));
 
 
   
-function getCityInFilter(){
-	const buttonFound = document.querySelector(".found-events-on-location");
+// function getCityInFilter(){
+// 	const buttonFound = document.querySelector(".found-events-on-location");
 
-	buttonFound.addEventListener("click", () => {
-	  const select = document.getElementById("location-select");
-	select.value != undefined ? displaySavedEvents(select.value) : select.value = undefined;
+// 	buttonFound.addEventListener("click", () => {
+// 	  const select = document.getElementById("location-select");
+// 	select.value != undefined ? displaySavedEvents(select.value) : select.value = undefined;
 	
-});
-}
+// });
+// }
 
-document.addEventListener("DOMContentLoaded", () => {
-	getCityInFilter();
-  });
+// document.addEventListener("DOMContentLoaded", () => {
+// 	getCityInFilter();
+//   });

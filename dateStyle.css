@@ -1,11 +1,12 @@
 *{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.date-input {
+.date-input-start, .date-input-end {
   padding: 2px;
   font-size: 1rem;
   background-color: rgba(13, 49, 120, 0.381);
   border: 2px rgb(159, 159, 159) solid;
+  margin: auto;
 }
 
 
@@ -52,7 +53,6 @@
   aspect-ratio: 1;
 }
 
- /* za prethodni i iduci mjesec */
 .dates button:disabled {
   opacity: 0.5;
   pointer-events: none;
@@ -72,8 +72,6 @@
   color: white;
   font-weight: 700;
 }
-
-/*____________*/
 
 .datepicker-toolbar {
   display: flex;
