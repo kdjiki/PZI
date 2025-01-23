@@ -41,16 +41,14 @@
 
 				<div id="location-input">
 					<label for="location-select">Odaberi lokaciju događaja:</label>
-					<br>
-					<select class="location-select-" id="location-select">
+					<select class="location-select" id="location-select">
 						<option value="">Izaberi lokaciju</option>
 					</select>
-					<button class="confirm-location-input">Potvrdi</button>
 				</div>
 
 				<div class="datepicker-container">
 					<p>Unesite datum početka:</p>
-					<input type="text" class="date-input-start" placeholder="Izaberi datum" />
+					<input type="text" class="date-input-start" placeholder="dd-mm-yy" />
 			
 					<div class="datepicker">
 					<div class="datepicker-toolbar">
@@ -93,70 +91,24 @@
 						<button class="apply">Primjeni</button>
 					</div>
 					</div>
-			  </div>
-			  <br>
-			  <br>
-			  <br>
-			<!-- <div class="datepicker-container2">
+			  </div> 
+			<div class="datepicker-container2">
 				<p>Unesite datum završetka:</p>
-				<input type="text" class="date-input-end" placeholder="Izaberi datum" />
-		
-				<div class="datepicker">
-				<div class="datepicker-toolbar">
-					<button class="prev">Prošli</button>
-		
-					<div>
-					<select class="month-input">
-						<option>Siječanj</option>
-						<option>Veljača</option>
-						<option>Ožujak</option>
-						<option>Travanj</option>
-						<option>Svibanj</option>
-						<option>Lipanj</option>
-						<option>Srpanj</option>
-						<option>Kolovoz</option>
-						<option>Rujan</option>
-						<option>Listopad</option>
-						<option>Studeni</option>
-						<option>Prosinac</option>
-					</select>
-					<input type="number" class="year-input" />
-					</div>
-		
-					<button class="next">Idući</button>
-				</div>
-				
-				<div class="days">
-					<span>PON</span>
-					<span>UTO</span>
-					<span>SRI</span>
-					<span>ČET</span>
-					<span>PET</span>
-					<span>SUB</span>
-					<span>NED</span>
-				</div>
-	
-				<div class="dates"></div>
-				<div class="datepicker-end-button">
-					<button class="cancel">Odustani</button>
-					<button class="apply">Primjeni</button>
-				</div>
-				</div> -->
-		  </div> 
-			  
-			
+				<input type="text" class="date-input-end" placeholder="dd-mm-yy" />
+			</div>
+
 			<div>
 				<button id="add-event">Dodaj događaj</button>
 			</div>
+		  </div> 
 
-
-			<!-- <p id="search-guide">Pretražite događaje po lokaciji: </p>
+			<p id="search-guide">Pretražite događaje po lokaciji: </p>
 			<div id="location-container">
-				<select id="location-select">
+				<select id="location-select-menu">
 					<option value="">Izaberi lokaciju (Trenutno sve lokacije)</option>
 				</select>
 				<button class="found-events-on-location" >Traži</button>
-			</div> -->
+			</div>
 			<div id="cards-container"> </div>
 		</main>
 		<footer>

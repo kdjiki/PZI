@@ -1,15 +1,25 @@
-
-
 const datepicker = document.querySelector(".datepicker");
 const dates = datepicker.querySelector(".dates");
 
 datepicker.hidden=true;
 
+let activeInputOfDate = null;
 let selectedDate = new Date();
 let year = selectedDate.getFullYear();
 let month = selectedDate.getMonth();
 
-document.querySelector(".date-input-start").addEventListener("click", () => {
+document.querySelector(".date-input-start").addEventListener("click", (e) => {
+  activeInputOfDate = "start";
+  const insertCalender = e.target.getBoundingClientRect();
+  datepicker.style.top = `${insertCalender.bottom + window.scrollY}px`;
+  datepicker.style.left = `${insertCalender.left + window.scrollX}px`;
+  datepicker.hidden = !datepicker.hidden;
+});
+document.querySelector(".date-input-end").addEventListener("click", (e) => {
+  activeInputOfDate = "end";
+  const insertCalender = e.target.getBoundingClientRect();
+  datepicker.style.top = `${insertCalender.bottom + window.scrollY}px`; 
+  datepicker.style.left = `${insertCalender.left + window.scrollX}px`;
   datepicker.hidden = !datepicker.hidden;
 });
 
@@ -18,13 +28,42 @@ datepicker.querySelector(".cancel").addEventListener("click", () => {
 });
 
 datepicker.querySelector(".apply").addEventListener("click", () => {
-    document.querySelector(".date-input-start").value = selectedDate.toLocaleDateString("en-GB", {
+  const formattedDate = selectedDate.toLocaleDateString("hr-HR", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric"
   });
+
+  if (activeInputOfDate === "start") {
+    const endDateValue = document.querySelector(".date-input-end").value;
+    if (endDateValue){
+      const endDate = new Date(endDateValue.split(".").reverse().join("-"));
+      const startDate = new Date(selectedDate);
+      if (endDate.getTime() >= startDate.getTime()) {
+        document.querySelector(".date-input-start").value = formattedDate;
+      } else {
+        alert("Datum kraja mora biti veći ili jednak datumu početka!");
+      }
+    }else
+      document.querySelector(".date-input-start").value = formattedDate;
+  } else if (activeInputOfDate === "end") {
+      const startDateValue = document.querySelector(".date-input-start").value;
+      if (!startDateValue) {
+        alert("Molimo unesite datum početka prije unosa datuma kraja!");
+        return;
+      }
+      const startDate = new Date(startDateValue.split(".").reverse().join("-"));
+      const endDate = new Date(selectedDate);
+      if (endDate.getTime() >= startDate.getTime()) {
+        document.querySelector(".date-input-end").value = formattedDate;
+      } else {
+        alert("Datum kraja mora biti veći ili jednak datumu početka!");
+      }
+  }
+
   datepicker.hidden = true;
 });
+
 
 const nextButton = datepicker.querySelector(".next");
 nextButton.addEventListener("click", () => {

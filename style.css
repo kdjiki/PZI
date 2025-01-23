@@ -177,12 +177,62 @@ h2 {
 	transform: scale(1.1);
 
 }
-/* 
+ 
 .location-select, .location-select-input{
 	margin-top: 15px;
 	margin-bottom: 5px;
-	background-color: rgba(13, 49, 120, 0.381);
-} */
+	background-color: white;
+} 
+
+
+.information-input{
+	background-color: rgba(20, 52, 117, 0.538);
+	padding: 15px;
+	border-radius: 10px;
+	color: white;
+	border:rgba(4, 6, 8, 0.247) 1px solid;
+	margin: 15px auto;
+	max-width: 300px;
+	height: auto;
+	 display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.information-input label {
+	margin-bottom: 5px;
+	text-align: center;
+  }
+.description-input, .URL-input, .name-input {
+	width: 100%;
+	margin-bottom: 15px;
+	text-align: center;
+}
+.information-input input{
+	border-radius: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	margin-top: 3px;
+}
+#location-input {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px auto;
+	text-align: center;
+}
+
+#location-input select {
+	width: 100%; 
+	max-width: 200px;
+	padding: 8px;
+	border-radius: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	box-sizing: border-box;
+	margin-top: 3px;
+  }
+
+.date-input-start::placeholder, .date-input-end::placeholder{
+	color: black;
+}
 
 @media screen and (max-width: 1000px) {
 	main {
@@ -196,6 +246,11 @@ h2 {
 	.card-header img{
 		width: 60%; 
     height: auto; 
+	}
+	select .location-select {
+		width: 0px;
+		font-size: 14px;
+		height: auto;
 	}
 }
 
@@ -216,5 +271,4 @@ h2 {
     height: auto; 
 	}
 }
-
 

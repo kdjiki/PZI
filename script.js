@@ -17,14 +17,14 @@ function handleAddCardButtonClick() {
 	if (!location) return;
 
 	const startDate =document.querySelector('.date-input-start').value;
-	// const endDate = document.querySelector('.date-input-end').value;
+	const endDate = document.querySelector('.date-input-end').value;
 	const newEvent = {
 	  header: headerOfArticle,
 	  image: imageLocation,
 	  description: description,
 	  location: location,
 	  startDate: startDate,
-	  endDate: "",
+	  endDate: endDate,
 	};
 
 	const happenings = JSON.parse(localStorage.getItem("events")) || [];
@@ -40,6 +40,7 @@ function handleAddCardButtonClick() {
 	document.querySelector('[name="description-of-event"]').value = "";
 	document.getElementById('location-select').value = "";
 	document.querySelector('.date-input-start').value = "";
+	document.querySelector('.date-input-end').value = "";
 }
 
 function displaySavedEvents(nameOfTheCity) {
@@ -84,34 +85,6 @@ function displaySavedEvents(nameOfTheCity) {
 		  
 			displaySavedEvents();
 		});
-
-
-	//   //FETCHANJE
-	//   fetch("https://raw.githubusercontent.com/samayo/country-json/refs/heads/master/src/country-by-capital-city.json")
-	//   .then(response => response.json())
-	//   .then(data => {
-	// 	  const select = document.getElementById(`location-select-${index}`);
-	// 	  data.forEach((entry) => {
-	// 		  const option = document.createElement("option");
-	// 		  option.value = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
-	// 		  option.textContent = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
-	// 		  select.appendChild(option);
-	// 	  });
-	//   })
-	//   .catch(error => console.log("Unable to fetch cities", error));
-  
-
-	// article.querySelector(".confirm-location").addEventListener("click", () => {
-	// 	const select = document.getElementById(`location-select-${index}`);
-	// 	const selectedLocation = select.value;
-
-
-		
-	// });
-	//const events = JSON.parse(localStorage.getItem("events")) || [];
-	// 	events[index].location = selectedLocation;
-	//localStorage.setItem("events", JSON.stringify(events));
-//displaySavedEvents();
 	cardContainer.appendChild(article);
 	});
 }
@@ -130,27 +103,29 @@ function displaySavedEvents(nameOfTheCity) {
   .then(response => response.json())
   .then(data => {
 	  const select = document.getElementById(`location-select`);
+	  const searchSelect = document.getElementById('location-select-menu');
 	  data.forEach((entry) => {
 		  const option = document.createElement("option");
 		  option.value = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
 		  option.textContent = entry.city ? `${entry.city}, ${entry.country}` : entry.country;
-		  select.appendChild(option);
+		  select.appendChild(option.cloneNode(true));
+		  searchSelect.appendChild(option.cloneNode(true));
 	  });
   })
   .catch(error => console.log(error));
 
 
   
-// function getCityInFilter(){
-// 	const buttonFound = document.querySelector(".found-events-on-location");
+function getCityInFilter(){
+	const buttonFound = document.querySelector(".found-events-on-location");
 
-// 	buttonFound.addEventListener("click", () => {
-// 	  const select = document.getElementById("location-select");
-// 	select.value != undefined ? displaySavedEvents(select.value) : select.value = undefined;
+	buttonFound.addEventListener("click", () => {
+	  const searchSelect = document.getElementById("location-select-menu");
+	  searchSelect.value != undefined ? displaySavedEvents(searchSelect.value) : displaySavedEvents();
 	
-// });
-// }
+});
+}
 
-// document.addEventListener("DOMContentLoaded", () => {
-// 	getCityInFilter();
-//   });
+document.addEventListener("DOMContentLoaded", () => {
+	getCityInFilter();
+  });
