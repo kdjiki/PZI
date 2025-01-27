@@ -9,11 +9,19 @@ let year = selectedDate.getFullYear();
 let month = selectedDate.getMonth();
 
 document.querySelector(".date-input-start").addEventListener("click", (e) => {
+  // resetra za svako prvo pokretanje datuma pocetka
+  const now = new Date();
+  year = now.getFullYear();
+  month = now.getMonth();
+  selectedDate = now;
+  
   activeInputOfDate = "start";
   const insertCalender = e.target.getBoundingClientRect();
   datepicker.style.top = `${insertCalender.bottom + window.scrollY}px`;
   datepicker.style.left = `${insertCalender.left + window.scrollX}px`;
   datepicker.hidden = !datepicker.hidden;
+
+  displayDates(); 
 });
 document.querySelector(".date-input-end").addEventListener("click", (e) => {
   activeInputOfDate = "end";
@@ -60,10 +68,11 @@ datepicker.querySelector(".apply").addEventListener("click", () => {
         alert("Datum kraja mora biti veći ili jednak datumu početka!");
       }
   }
+  
 
   datepicker.hidden = true;
-});
 
+});
 
 const nextButton = datepicker.querySelector(".next");
 nextButton.addEventListener("click", () => {
@@ -131,18 +140,20 @@ const displayDates = () => {
 
 const createButton = (text, isDisabled = false, type = 0) => {
   const currentDate = new Date();
-
- 
   let comparisonDate = new Date(year, month + type, text);
 
   const selected = selectedDate.getTime() === comparisonDate.getTime();
   const button = document.createElement("button");
   button.textContent = text;
   button.disabled = isDisabled;
-  button.classList.toggle("today",  currentDate.getDate() === text &&
-    currentDate.getFullYear() === year &&
-    currentDate.getMonth() === month && 
-    !isDisabled);
+
+
+  const isToday = 
+    currentDate.getDate() === comparisonDate.getDate() &&
+    currentDate.getMonth() === comparisonDate.getMonth() &&
+    currentDate.getFullYear() === comparisonDate.getFullYear();
+
+  button.classList.toggle("today", isToday && !isDisabled);
   button.classList.toggle("selected", selected);
   return button;
 };

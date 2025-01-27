@@ -19,7 +19,7 @@ header {
 	left: 0;
 	right: 0;
 	justify-content: space-between;
-	z-index: 1;
+	z-index: 10;
 }
 
 #header-title{
@@ -66,7 +66,7 @@ main {
 
 main>h1 {
 	font-size: x-large;
-	margin-top: 5rem;
+	margin-top: 6rem;
     margin-bottom: 1.5 rem;
     text-align: center;
 	color: rgba(4, 40, 111, 0.723);
@@ -162,7 +162,7 @@ h2 {
 	margin: 5px auto;
 
 }
-.found-events-on-location, .confirm-location-input{
+.found-events-on-location{
 	color: white;
 	background-color:  rgb(13, 49, 120);
 	padding: 5px 10px;
@@ -171,18 +171,18 @@ h2 {
 	margin-left: 5px;
 }
 
-.found-events-on-location:hover, .confirm-location-input:hover {
+.found-events-on-location:hover {
 	background-color:rgb(2, 59, 174);
 	transition: 0.5s;
 	transform: scale(1.1);
 
 }
  
-.location-select, .location-select-input{
+.location-select{
 	margin-top: 15px;
 	margin-bottom: 5px;
 	background-color: white;
-} 
+}
 
 
 .information-input{
@@ -233,6 +233,15 @@ h2 {
 .date-input-start::placeholder, .date-input-end::placeholder{
 	color: black;
 }
+#message-empty{
+	margin: 5px auto;
+	color: rgb(3, 40, 115);
+}
+
+#text-about, #author{
+	color:  rgb(3, 40, 115);
+}
+
 
 @media screen and (max-width: 1000px) {
 	main {
@@ -259,8 +268,8 @@ h2 {
 		width: 95%;
 	}
 
-	#location-select, .location-select-input{
-		width: 70%;
+	#location-select-menu, .location-select{
+		width: 55%;
 	}
 
 	#cards-container {

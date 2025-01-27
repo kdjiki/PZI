@@ -17,11 +17,14 @@
 
 .datepicker {
   position: absolute;
+  margin: 1px auto;
   top: 100%;
+  transform: translateX(-18%); 
   z-index: 1;
   background-color: rgb(255,255,255);
   padding: 10px;
   border: 1px rgb(159, 159, 159) solid;
+
 }
 
 .datepicker button {

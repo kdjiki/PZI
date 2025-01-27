@@ -1,23 +1,38 @@
-
 //Funkcija za dodavanje događaja
 const addNewCardButton = document.getElementById('add-event');
 
-addNewCardButton.addEventListener('click', handleAddCardButtonClick);
+addNewCardButton.addEventListener('click', handleAddNewCardButtonClick);
 
-function handleAddCardButtonClick() {
+function handleAddNewCardButtonClick() {
 	const headerOfArticle = document.querySelector('[name="name-of-event"]').value;
-	if (!headerOfArticle) return;
-
+	if (headerOfArticle == "") {
+		alert("Unos naziva događaja je obavezan!");
+		return;
+	}
 	const imageLocation = document.querySelector('[name="URL-of-picture"]').value;
-	if (!imageLocation) return;
+	if (imageLocation == ""){
+		alert("Unos URL fotografije događaja je obavezan!");
+		return;
+	}
 
 	const description = document.querySelector('[name="description-of-event"]').value;
-	if (!description) return;
+	if (description  == "") {
+		alert("Unos opisa događaja je obavezan!");
+		return;
+	}
 	const location= document.getElementById('location-select').value;
-	if (!location) return;
-
+	if (location  == "") {
+		alert("Unos lokacije događaja je obavezan!");
+		return;
+	}
 	const startDate =document.querySelector('.date-input-start').value;
+	if (startDate  == "") {
+		alert("Unos datuma početka događaja je obavezan!");
+		return;
+	}
 	const endDate = document.querySelector('.date-input-end').value;
+
+
 	const newEvent = {
 	  header: headerOfArticle,
 	  image: imageLocation,
@@ -28,7 +43,9 @@ function handleAddCardButtonClick() {
 	};
 
 	const happenings = JSON.parse(localStorage.getItem("events")) || [];
-	
+	if (endDate  == "") {
+		newEvent.endDate=startDate;
+	}
 	// happenings su parsirani eventi (glupo ime zbog razlike)
 	happenings.push(newEvent);
 	localStorage.setItem("events", JSON.stringify(happenings));
@@ -51,11 +68,20 @@ function displaySavedEvents(nameOfTheCity) {
 	const filteredEvents = nameOfTheCity
 		? events.filter(event => event.location === nameOfTheCity)
 		: events;
+
+	if (filteredEvents.length === 0){
+		const article = document.createElement("article");
+	  article.classList.add("card");
+		article.innerHTML = ` 
+			<p id="message-empty">Trenutno nema dostupnih događaja za odabranu lokaciju.</p>
+		`
+		cardContainer.appendChild(article);
+	}
 	
 	filteredEvents.forEach((event) => {
 	  const article = document.createElement("article");
 	  article.classList.add("card");
-  
+
 	  article.innerHTML = `
 		<div class="card-main">
 		  <div class="card-header">
@@ -112,9 +138,6 @@ function displaySavedEvents(nameOfTheCity) {
 		  searchSelect.appendChild(option.cloneNode(true));
 	  });
   })
-  .catch(error => console.log(error));
-
-
   
 function getCityInFilter(){
 	const buttonFound = document.querySelector(".found-events-on-location");
