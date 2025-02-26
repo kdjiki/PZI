@@ -1,3 +1,7 @@
+//unutar ovog file-a za izradu custom date picker-a koristene su ideje
+// te djelomicn implementacija iz tutoriala poput https://www.youtube.com/watch?v=wY2dao1hJms,
+//  https://www.youtube.com/watch?v=lDv8YsTgSAs i https://www.youtube.com/watch?v=WOj3g09ZU9Y
+
 const datepicker = document.querySelector(".datepicker");
 const dates = datepicker.querySelector(".dates");
 

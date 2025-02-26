@@ -16,12 +16,12 @@ function handleAddNewCardButtonClick() {
 	}
 
 	const description = document.querySelector('[name="description-of-event"]').value;
-	if (description  == "") {
+	if (!description) {
 		alert("Unos opisa događaja je obavezan!");
 		return;
 	}
 	const location= document.getElementById('location-select').value;
-	if (location  == "") {
+	if (!location) {
 		alert("Unos lokacije događaja je obavezan!");
 		return;
 	}
