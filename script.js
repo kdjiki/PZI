@@ -64,7 +64,7 @@ function displaySavedEvents(nameOfTheCity) {
 	const cardContainer = document.getElementById("cards-container");
 	cardContainer.innerHTML = "";
 
-	var events = JSON.parse(localStorage.getItem("events")) || [];
+	let events = JSON.parse(localStorage.getItem("events")) || [];
 	const filteredEvents = nameOfTheCity
 		? events.filter(event => event.location === nameOfTheCity)
 		: events;
